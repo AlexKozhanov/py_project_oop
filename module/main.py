@@ -1,5 +1,3 @@
-import pytest
-
 class Product:
     """Класс Продукты"""
     name: str
@@ -33,9 +31,8 @@ class Category:
         self.name = name
         self.description = description
         self.products = products
-
+        self.product_count += len(products)
         Category.category_count += 1
-        Category.product_count += 1
 
 
 def main():
@@ -69,7 +66,7 @@ def main():
     print(category1.category_count)
     print(category1.product_count)
 
-    product4 = Product("55\ QLED 4K", "Фоновая подсветка", 123000.0, 7)
+    product4 = Product("55 QLED 4K", "Фоновая подсветка", 123000.0, 7)
     category2 = Category("Телевизоры",
                          "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником",
                          [product4])
@@ -80,8 +77,8 @@ def main():
     print(category2.products)
 
     print(Category.category_count)
-    print(Category.product_count)
-
+    print(category1.product_count)
+    print(category2.product_count)
 
 if __name__ == "__main__":
     main()
