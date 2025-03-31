@@ -1,15 +1,16 @@
-import pytest
-from module.product import Product
-from module.category import Category
+from tests.conftest import test_product #импорт переменной для тестирования
 
-product_test = Product("Nokia", "ultra", 1000, 1)
-category_test = Category("test", "test for hell", [product_test])
+def test_init_product(create_product):
+    assert create_product.__repr__() == "Product('Nokia', 'ultra', 1000, 1)"
+    assert create_product.name == "Nokia"
+    assert create_product.description == "ultra"
+    assert create_product.price == 1000
+    assert create_product.quantity == 1
 
-def test_init_product():
-    assert product_test.__repr__() == "Product('Nokia', 'ultra', 1000, 1)"
-
-def test_init_category():
-    assert category_test.__repr__() == "Category('test', 'test for hell', product_count=1, category_count=1)"
-    assert category_test.name == 'test'
-    assert category_test.product_count == 1
-    assert category_test.category_count == 1
+def test_init_category(create_category):
+    assert create_category.__repr__() == "Category('test', 'test for hell', product_count=1, category_count=1)"
+    assert create_category.name == "test"
+    assert create_category.description == "test for hell"
+    assert create_category.products == [test_product]
+    assert create_category.product_count == 1
+    assert create_category.category_count == 1
