@@ -1,42 +1,5 @@
-import pytest
-
-class Product:
-    """Класс Продукты"""
-    name: str
-    description: str
-    price: float
-    quantity: int # количество в наличии
-
-    def __init__(self, name, description, price, quantity):
-        """Метод для инициализации экземпляра класса. Задаём значения атрибутам экземпляра"""
-        self.name = name
-        self.description = description
-        self.price = price
-        self.quantity = quantity
-
-    def __repr__(self):
-        return f"{self.__class__.__name__}('{self.name}', '{self.description}', {self.price}, {self.quantity})"
-
-
-class Category:
-    """Класс Категория"""
-    name: str
-    description: str
-    products: list # список товаров категории
-
-    #Переменные на уровне класса
-    category_count = 0
-    product_count = 0
-
-    def __init__(self, name, description, products):
-        """Метод для инициализации экземпляра класса. Задаём значения атрибутам экземпляра"""
-        self.name = name
-        self.description = description
-        self.products = products
-
-        Category.category_count += 1
-        Category.product_count += 1
-
+from product import Product
+from category import Category
 
 def main():
     product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
@@ -69,7 +32,7 @@ def main():
     print(category1.category_count)
     print(category1.product_count)
 
-    product4 = Product("55\ QLED 4K", "Фоновая подсветка", 123000.0, 7)
+    product4 = Product("55 QLED 4K", "Фоновая подсветка", 123000.0, 7)
     category2 = Category("Телевизоры",
                          "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником",
                          [product4])
@@ -80,8 +43,10 @@ def main():
     print(category2.products)
 
     print(Category.category_count)
-    print(Category.product_count)
+    print(category1.product_count)
+    print(category2.product_count)
 
+    print(category1)
 
 if __name__ == "__main__":
     main()
