@@ -50,8 +50,3 @@ def read_json(file, category_list = [], product_list = []):
     product_list.append(product4_class)
 
     return category_list, product_list
-
-
-def pull_json(file, category_out = Category):
-    with open(file, 'w') as f:
-        json.dump(category_out.toJSON, f)

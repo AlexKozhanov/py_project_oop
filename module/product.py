@@ -15,12 +15,6 @@ class Product:
     def __repr__(self):
         return f"{self.__class__.__name__}('{self.name}', '{self.description}', {self.price}, {self.quantity})"
 
-    def __dict__(self):
-        return {"name": self.name,
-                "description": self.description,
-                "price": self.price,
-                "quantity": self.quantity
-               }
 
     @property
     def price(self):
@@ -40,4 +34,3 @@ class Product:
         price = product_dictionary['price']
         quantity = product_dictionary['quantity']
         return cls(name, description, price, quantity)
-
