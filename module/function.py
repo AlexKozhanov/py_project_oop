@@ -27,31 +27,33 @@ def read_json(file, category_list = [], product_list = []):
     product3 = product_list1[2]
     product4 = product_list2[0]
 
-    product1_class = Product(product1.get('name'),
-                             product1.get('description'),
-                             product1.get('price'),
-                             product1.get('quantity'))
-    product2_class = Product(product2.get('name'),
-                             product2.get('description'),
-                             product2.get('price'),
-                             product2.get('quantity'))
-    product3_class = Product(product3.get('name'),
-                             product3.get('description'),
-                             product3.get('price'),
-                             product3.get('quantity'))
-    product4_class = Product(product4.get('name'),
-                             product4.get('description'),
-                             product4.get('price'),
-                             product4.get('quantity'))
+    # product1_class = Product(product1.get('name'),
+    #                          product1.get('description'),
+    #                          product1.get('price'),
+    #                          product1.get('quantity'))
+    # product2_class = Product(product2.get('name'),
+    #                          product2.get('description'),
+    #                          product2.get('price'),
+    #                          product2.get('quantity'))
+    # product3_class = Product(product3.get('name'),
+    #                          product3.get('description'),
+    #                          product3.get('price'),
+    #                          product3.get('quantity'))
+    # product4_class = Product(product4.get('name'),
+    #                          product4.get('description'),
+    #                          product4.get('price'),
+    #                          product4.get('quantity'))
 
-    product_list.append(product1_class)
-    product_list.append(product2_class)
-    product_list.append(product3_class)
-    product_list.append(product4_class)
+    product_list.append(product1)
+    product_list.append(product2)
+    product_list.append(product3)
+    product_list.append(product4)
 
     return category_list, product_list
 
+def write_json(category_list):
+    pass
 
-def pull_json(file, category_out = Category):
-    with open(file, 'w') as f:
-        json.dump(category_out.toJSON, f)
+def pull_json(file, category_out):
+    with open(file, 'w', encoding='utf-8') as f:
+        json.dump(category_out, f, ensure_ascii=False, indent=2)

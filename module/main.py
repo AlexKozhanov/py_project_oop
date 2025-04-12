@@ -22,12 +22,12 @@ def main():
     category2 = category_list[1]
 
     # Основная программа
-    print(category1.products) # использование геттера
-    print(category1.print_products) # использование геттера
+    print(category1.products) # До обработки
+    category1.print_products_all(category1.products) ## использование метода класса Категория
     product4 = product_list[3]
-    category1.add_product(product4) # использование сеттера?
-    print(category1.products) # использование геттера
-    print(category1.print_products)
+    category1.add_product(product4)
+    print(category1.products) # После обработки
+    category1.print_products_all(category1.products) ## использование метода класса Категория
     print(category1.product_count)
 
     new_product = Product.new_product(
@@ -50,8 +50,10 @@ def main():
     print(new_product.price)
 
     # Запись данных в json
-    # pull_json(file_output, category1)
-
+    category_list = []
+    category_list.append(Category.decoder(category1))
+    category_list.append(Category.decoder(category2))
+    pull_json(file_output, category_list)
 
 if __name__ == "__main__":
     main()

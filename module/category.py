@@ -4,8 +4,7 @@ class Category:
     """Класс Категория"""
     name: str
     description: str
-    products: Product # список товаров категории
-
+    products: list # список товаров категории
     #Переменные на уровне класса
     category_count = 0
     product_count = 0
@@ -21,27 +20,30 @@ class Category:
     def __repr__(self):
         return f"{self.__class__.__name__}('{self.name}', '{self.description}', product_count={self.product_count}, category_count={self.category_count})"
 
-    def __dict__(self):
-        return {
-                "name": self.name,
-                "description": self.description
-               }
-
     @property
     def products(self):
         return self.__products
 
-    @property
-    def print_products(self):
-        return f"{self.__products}, Остаток: {self.product_count}"
+    @classmethod
+    def print_products_all(cls, products_of_category):
+        """Название продукта, 80 руб. Остаток: 15 шт."""
+        for i in products_of_category:
+            one_products_of_category = Product(i.get('name'), i.get('description'), i.get('price'), i.get('quantity'))
+            print(one_products_of_category.str_product)
 
-    def toJSON(self):
-        return json.dumps(
-            self,
-            default=lambda o: o.__dict__,
-            sort_keys=True,
-            indent=4)
-
-    def add_product(self, new_product = Product):
-        self.products.append(new_product) # использование сеттера?
+    def add_product(self, new_product):
+        """Добавляет в список товаров категории товар вида Список"""
+        self.products.append(new_product)
         self.product_count += 1
+
+    def decoder(self):
+        dict_decoder = dict({"name": self.name,
+                             "description": self.description,
+                             "product_count": self.product_count,
+                             "products": self.products
+                             })
+        return dict_decoder
+
+    def __iter__(self):
+        for attr, value in self.__dict__.items():
+            yield (attr, value)

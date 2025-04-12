@@ -15,13 +15,6 @@ class Product:
     def __repr__(self):
         return f"{self.__class__.__name__}('{self.name}', '{self.description}', {self.price}, {self.quantity})"
 
-    def __dict__(self):
-        return {"name": self.name,
-                "description": self.description,
-                "price": self.price,
-                "quantity": self.quantity
-               }
-
     @property
     def price(self):
         return self.__price # геттер
@@ -32,6 +25,10 @@ class Product:
             print('Цена не должна быть нулевая или отрицательная')
          else:
             self.__price = price
+
+    @property
+    def str_product(self):
+        return f"{self.name}, {self.price} руб. Остаток {self.quantity} шт."
 
     @classmethod
     def new_product(cls, product_dictionary):
