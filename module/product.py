@@ -13,8 +13,23 @@ class Product:
         self.quantity = quantity
 
     def __repr__(self):
+        """Отображения информации об объекте в режиме отладки"""
         return f"{self.__class__.__name__}('{self.name}', '{self.description}', {self.price}, {self.quantity})"
 
+    def __str__(self):
+        """Метод для строкового отображения объекта"""
+        return f"{self.name}, {self.price} руб. Остаток {self.quantity} шт."
+
+    def __add__(self, other):
+        """Метод, который вызывается при сложении двух объектов """
+        self.name += other.name
+        self.description += other.description
+        self.price += other.price
+        self.quantity += self.quantity
+
+    def __call__(self, *args, **kwargs):
+        """Метод, который делает созданный объект вызываемым (callable)"""
+        print(f'Был вызван объект {self}')
 
     @property
     def price(self):
@@ -26,6 +41,10 @@ class Product:
             print('Цена не должна быть нулевая или отрицательная')
          else:
             self.__price = price
+
+    @property
+    def str_product(self):
+        return f"{self.name}, {self.price} руб. Остаток {self.quantity} шт."
 
     @classmethod
     def new_product(cls, product_dictionary):
