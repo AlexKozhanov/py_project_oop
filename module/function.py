@@ -1,5 +1,6 @@
 from product import Product
 from category import Category
+from MyError import MyError
 import json
 
 
@@ -31,21 +32,18 @@ def read_json(file, category_list = [], product_list = []):
 
     return category_list, product_list
 
-def converting_class(category_list, product_list):
+def converting_class(input = dict, text = str):
     """Создаёт объекты классов"""
-    # Преобразование объектов лист в экземпляры класса Категория
-    category_list_cass = []
-    product_list_cass = []
-    for i in category_list:
-        category_obg = Category(i.get('name'), i.get('description'), i.get('products'))
-        category_list_cass.append(category_obg)
-    # category1_class = Category(category1.get('name'), category1.get('description'), category1.get('products'))
-    # category2_class = Category(category2.get('name'), category2.get('description'), category2.get('products'))
-    # Преобразование объектов лист в экземпляры класса Продукты
-    for j in product_list:
-        product_obj = Product(j.get('name'), j.get('description'), j.get('price'), j.get('quantity'))
-        product_list_cass.append(product_obj)
-    return category_list, product_list
+    if text == 'Category':
+        # Преобразование объектов лист в экземпляры класса Категория
+        exemplar = Category(input.get('name'), input.get('description'), input.get('products'))
+        return exemplar
+    elif text == 'Product':
+        # Преобразование объектов лист в экземпляры класса Продукты
+        exemplar = Product(input.get('name'), input.get('description'), input.get('price'), input.get('quantity'))
+        return exemplar
+    else:
+        raise MyError(4, "Такого класса нет") # Потом текст вынести в отдельное место и брать только код текста с ошибкой
 
 def write_json(category_list, category_cls_obj):
     """На вход список и экземпляр класса Категория, на выходе лист с категориями"""
