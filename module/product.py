@@ -55,3 +55,25 @@ class Product:
         price = product_dictionary['price']
         quantity = product_dictionary['quantity']
         return cls(name, description, price, quantity)
+
+class Smartphone(Product):
+    """Класс Продукты"""
+    name: str # Наименование
+    description: str # Описание
+    price: float # цена
+    quantity: int  # количество в наличии
+    efficiency: int # производительность
+    model: str # модель
+    memory: int # объем встроенной памяти
+    color: str # цвет
+
+
+class LawnGrass(Product):
+    """Класс Продукты"""
+    name: str  # Наименование
+    description: str  # Описание
+    price: float  # цена
+    quantity: int  # количество в наличии
+    country: str # страна - производитель
+    germination_period: str # срок прорастания
+    color: str # цвет
