@@ -1,10 +1,11 @@
-from product import Product
+from product import Product, Smartphone, LawnGrass
+from MyError import MyError
 
 class Category:
     """Класс Категория"""
-    name: str
-    description: str
-    products: Product # список товаров категории
+    name: str # название
+    description: str # описание
+    products: list # список товаров категории
 
     # Переменные на уровне класса/Атрибуты класса Category
     category_count = 0
@@ -19,7 +20,8 @@ class Category:
         Category.category_count += 1
 
     def __repr__(self):
-        return f"{self.__class__.__name__}('{self.name}', '{self.description}', product_count={self.product_count}, category_count={self.category_count})"
+        return f"{self.__class__.__name__}('{self.name}', '{self.description}', " \
+               f"product_count={self.product_count}, category_count={self.category_count})"
 
     def __str__(self):
         """Метод для строкового отображения объекта"""
@@ -54,8 +56,14 @@ class Category:
 
     def add_product(self, new_product):
         """Добавляет в список товаров категории товар вида Список"""
-        self.products.append(new_product)
-        self.product_count += 1
+        if issubclass(new_product.__class__, Smartphone):
+            self.products.append(new_product)
+            self.product_count += 1
+        elif issubclass(new_product.__class__, LawnGrass):
+            self.products.append(new_product)
+            self.product_count += 1
+        else:
+            raise MyError("Добавлять можно только классы Smartphone и LawnGrass")
 
     def decoder(self):
         dict_decoder = dict({"name": self.name,
@@ -68,3 +76,11 @@ class Category:
     def __iter__(self):
         for attr, value in self.__dict__.items():
             yield (attr, value)
+
+    @classmethod
+    def new_category(cls, category_dictionary, product_list):
+        name = category_dictionary['name']
+        description = category_dictionary['description']
+        products = product_list
+        product_count = len(product_list)
+        return cls(name, description, products)

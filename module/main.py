@@ -1,38 +1,18 @@
+#INCLUDE:
 from MyError import MyError
-from function import read_json, pull_json, write_json, converting_class
+from function import read_json, pull_json, write_json
+from category import Category
+from product import Product, Smartphone, LawnGrass
 import json
 
+#DATA:
 file_input = '../config/products.json'
 file_output = '../config/output.json'
 
-
-def main():
-    # Чтение данных из json
-    category_list = []
-    product_list = []
-    read_json(file_input, category_list, product_list)
-
-    # Распаковка данных из json
-    category1 = category_list[0]
-    product1 = product_list[0]
-    product2 = product_list[1]
-    product3 = product_list[2]
-    # Обработка данных в экземпляры класса
-    try:
-        category1 = converting_class(category1, 'Category')
-        product1 = converting_class(product1, 'Product')
-        product2 = converting_class(product2, 'Product')
-        product3 = converting_class(product3, 'Product')
-    except MyError as er:
-        print(er)
-        quit()
-
-    # Основная программа
-    smartphone1 = Smartphone("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5, 95.5,
-                             "S23 Ultra", 256, "Серый")
-    smartphone2 = Smartphone("Iphone 15", "512GB, Gray space", 210000.0, 8, 98.2, "15", 512, "Gray space")
-    smartphone3 = Smartphone("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14, 90.3, "Note 11", 1024, "Синий")
-
+#INITIALIZATION.
+def main(category_smartphones, category_grass, smartphone1, smartphone2, smartphone3, grass1, grass2):
+    """Основная программа"""
+    # smartphone
     print(smartphone1.name)
     print(smartphone1.description)
     print(smartphone1.price)
@@ -60,9 +40,7 @@ def main():
     print(smartphone3.memory)
     print(smartphone3.color)
 
-    grass1 = LawnGrass("Газонная трава", "Элитная трава для газона", 500.0, 20, "Россия", "7 дней", "Зеленый")
-    grass2 = LawnGrass("Газонная трава 2", "Выносливая трава", 450.0, 15, "США", "5 дней", "Темно-зеленый")
-
+    # grass
     print(grass1.name)
     print(grass1.description)
     print(grass1.price)
@@ -87,14 +65,12 @@ def main():
 
     try:
         invalid_sum = smartphone1 + grass1
-    except TypeError:
-        print("Возникла ошибка TypeError при попытке сложения")
+    except MyError:
+        print("Возникла ошибка MyError при попытке сложения")
     else:
-        print("Не возникла ошибка TypeError при попытке сложения")
+        print("Не возникла ошибка MyError при попытке сложения")
 
-    category_smartphones = Category("Смартфоны", "Высокотехнологичные смартфоны", [smartphone1, smartphone2])
-    category_grass = Category("Газонная трава", "Различные виды газонной травы", [grass1, grass2])
-
+    # category
     category_smartphones.add_product(smartphone3)
 
     print(category_smartphones.products)
@@ -103,15 +79,40 @@ def main():
 
     try:
         category_smartphones.add_product("Not a product")
-    except TypeError:
-        print("Возникла ошибка TypeError при добавлении не продукта")
+    except MyError as er:
+        print("Возникла ошибка MyError при добавлении не продукта")
+        print(er)
     else:
-        print("Не возникла ошибка TypeError при добавлении не продукта")
-
-    # Запись данных в json
-    category_list = []
-    category_list = write_json(category_list, category1)
-    pull_json(file_output, category_list)
+        print("Не возникла ошибка MyError при добавлении не продукта")
 
 if __name__ == "__main__":
-    main()
+    # Чтение данных из json
+    list_Smartphone_products, list_LawnGrass_products, \
+    list_Smartphone_categories, list_LawnGrass_categories = read_json(file_input) # тут словари в списках
+
+    # Распаковка данных из json
+    category_smartphones = list_Smartphone_categories[0] # тут уже словари
+    category_grass = list_LawnGrass_categories[0]
+    smartphone1 = list_Smartphone_products[0]
+    smartphone2 = list_Smartphone_products[1]
+    smartphone3 = list_Smartphone_products[2]
+    grass1 = list_LawnGrass_products[0]
+    grass2 = list_LawnGrass_products[1]
+
+    # Обработка данных в экземпляры класса
+    category_smartphones = Category.new_category(category_smartphones, list_Smartphone_products)
+    category_grass = Category.new_category(category_grass, list_LawnGrass_products)
+    smartphone1 = Smartphone.new_product(smartphone1)
+    smartphone2 = Smartphone.new_product(smartphone2)
+    smartphone3 = Smartphone.new_product(smartphone3)
+    grass1 = LawnGrass.new_product(grass1)
+    grass2 = LawnGrass.new_product(grass2)
+
+    # Основная программа
+    main(category_smartphones, category_grass, smartphone1, smartphone2, smartphone3, grass1, grass2)
+
+    # Кодировка данных в json
+    category_smartphones.products[3] = Product.decoder(category_smartphones.products[3])  # для кодировки в json
+    category_list = []
+    category_list = write_json(category_list, category_smartphones)
+    pull_json(file_output, category_list)

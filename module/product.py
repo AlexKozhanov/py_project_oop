@@ -1,8 +1,8 @@
 class Product:
     """Класс Продукты"""
-    name: str
-    description: str
-    price: float
+    name: str # Наименование
+    description: str # Описание
+    price: float # цена
     quantity: int # количество в наличии
 
     def __init__(self, name, description, price, quantity):
@@ -23,8 +23,6 @@ class Product:
 
     def __add__(self, other):
         """Метод, который вызывается при сложении двух объектов """
-        # self.name += other.name
-        # self.description += other.description
         self.price += other.price
         self.quantity += other.quantity
         return self
@@ -49,31 +47,82 @@ class Product:
         return f"{self.name}, {self.price} руб. Остаток {self.quantity} шт."
 
     @classmethod
-    def new_product(cls, product_dictionary):
-        name = product_dictionary['name']
-        description = product_dictionary['description']
-        price = product_dictionary['price']
-        quantity = product_dictionary['quantity']
+    def new_product(cls, product_data):
+        name = product_data.get("name")
+        description = product_data.get("description")
+        price = product_data.get("price")
+        quantity = product_data.get("quantity")
         return cls(name, description, price, quantity)
 
+    def decoder(self):
+        dict_decoder = dict({"name": self.name,
+                             "description": self.description,
+                             "price": self.price,
+                             "quantity": self.quantity
+                             })
+        return dict_decoder
+
 class Smartphone(Product):
-    """Класс Продукты"""
-    name: str # Наименование
-    description: str # Описание
-    price: float # цена
-    quantity: int  # количество в наличии
+    """Класс Телефоны"""
     efficiency: int # производительность
     model: str # модель
     memory: int # объем встроенной памяти
     color: str # цвет
 
+    def __init__(self, name, description, price, quantity, efficiency, model, memory, color):
+        super().__init__(name, description, price, quantity)
+        self.efficiency = efficiency
+        self.model = model
+        self.memory = memory
+        self.color = color
+
+    def __add__(self, other):
+        """Метод, который вызывается при сложении двух объектов """
+        if not isinstance(other, Product):
+            raise ValueError('Складывать можно только объекты Product и дочерние от них.')
+        self.price += other.price
+        self.quantity += other.quantity
+        return self
+
+    @classmethod
+    def new_product(cls, product_dictionary):
+        name = product_dictionary.get("name")
+        description = product_dictionary.get("description")
+        price = product_dictionary.get("price")
+        quantity = product_dictionary.get("quantity")
+        efficiency = product_dictionary.get('efficiency')
+        model = product_dictionary.get('model')
+        memory = product_dictionary.get('memory')
+        color = product_dictionary.get('color')
+        return cls(name, description, price, quantity, efficiency, model, memory, color)
 
 class LawnGrass(Product):
-    """Класс Продукты"""
-    name: str  # Наименование
-    description: str  # Описание
-    price: float  # цена
-    quantity: int  # количество в наличии
+    """Класс Газон"""
     country: str # страна - производитель
     germination_period: str # срок прорастания
     color: str # цвет
+
+    def __init__(self, name, description, price, quantity, country, germination_period, color):
+        super().__init__(name, description, price, quantity)
+        self.country = country
+        self.germination_period = germination_period
+        self.color = color
+
+    def __add__(self, other):
+        """Метод, который вызывается при сложении двух объектов """
+        if not isinstance(other, Product):
+            raise ValueError('Складывать можно только объекты Product и дочерние от них.')
+        self.price += other.price
+        self.quantity += other.quantity
+        return self
+
+    @classmethod
+    def new_product(cls, product_dictionary):
+        name = product_dictionary.get("name")
+        description = product_dictionary.get("description")
+        price = product_dictionary.get("price")
+        quantity = product_dictionary.get("quantity")
+        country = product_dictionary.get('efficiency')
+        germination_period = product_dictionary.get('model')
+        color = product_dictionary.get('color')
+        return cls(name, description, price, quantity, country, germination_period, color)
