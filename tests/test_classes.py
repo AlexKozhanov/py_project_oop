@@ -1,16 +1,26 @@
-from tests.conftest import test_product #импорт переменной для тестирования
+from tests.conftest import test_product1 #импорт переменной для тестирования
 
-def test_init_product(create_product):
-    assert create_product.__repr__() == "Product('Nokia', 'ultra', 1000, 1)"
-    assert create_product.name == "Nokia"
-    assert create_product.description == "ultra"
-    assert create_product.price == 1000
-    assert create_product.quantity == 1
+# test_product1 = Product("Nokia", "ultra", 1000.0, 1)
+# test_product2 = Product("Nokla", "Pultra", 2000.0, 1)
+# test_category = Category("Phone", "Phone it's good", [test_product])
+def test_init_product(product_test):
+    assert product_test.__repr__() == "Product('Nokia', 'ultra', 1000, 1)"
+    assert product_test.__str__() == "Nokia, 1000 руб. Остаток 1 шт."
+    assert product_test.__call__() == "Был вызван объект Nokia, 1000 руб. Остаток 1 шт."
+    assert product_test.name == "Nokia"
+    assert product_test.description == "ultra"
+    assert product_test.price == 1000
+    assert product_test.quantity == 1
 
-def test_init_category(create_category):
-    assert create_category.__repr__() == "Category('test', 'test for hell', product_count=1, category_count=1)"
-    assert create_category.name == "test"
-    assert create_category.description == "test for hell"
-    assert create_category.products == [test_product]
-    assert create_category.product_count == 1
-    assert create_category.category_count == 1
+def test_product_add(product_test, product_test_add):
+    assert product_test + product_test_add == 3000.0
+
+def test_init_category(category_test):
+    assert category_test.__repr__() == "Category('Phone', 'Phone it's good', product_count=1, category_count=1)"
+    assert category_test.__str__() == "Phone, количество продуктов: 1 шт."
+    assert category_test.__call__() == "Был вызван объект Phone, количество продуктов: 1 шт."
+    assert category_test.name == "Phone"
+    assert category_test.description == "Phone it's good"
+    assert category_test.products == [test_product1]
+    assert category_test.product_count == 1
+    assert category_test.category_count == 1

@@ -39,6 +39,7 @@ def main():
     print(product1 + product3)
     print(product2 + product3)
 
+
     # Запись данных в json
     category_list = []
     category_list = write_json(category_list, category1)

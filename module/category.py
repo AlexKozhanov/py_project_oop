@@ -1,10 +1,11 @@
+
 from product import Product
 
 class Category:
     """Класс Категория"""
     name: str
     description: str
-    products: Product # список товаров категории
+    products: list # список товаров категории
 
     # Переменные на уровне класса/Атрибуты класса Category
     category_count = 0
@@ -23,9 +24,7 @@ class Category:
 
     def __str__(self):
         """Метод для строкового отображения объекта"""
-        return f"-----/№{self.category_count}, Категория - {self.name}/-----\n" \
-               f"Кол-во {self.name} =  {self.product_count}\n" \
-               f"Описание: {self.description}"
+        return f"{self.name}, количество продуктов: {self.product_count} шт." \
 
     def __len__(self):
         """ Метод, который вызывается при применении функции len"""

@@ -18,16 +18,11 @@ class Product:
 
     def __str__(self):
         """Метод для строкового отображения объекта"""
-        return f"-----/Продукт {self.name}/-----\n" \
-               f"{self.description}, Цена: {self.price} руб. Остаток {self.quantity} шт."
+        return f"{self.name}, {self.price} руб. Остаток {self.quantity} шт."
 
     def __add__(self, other):
         """Метод, который вызывается при сложении двух объектов """
-        # self.name += other.name
-        # self.description += other.description
-        self.price += other.price
-        self.quantity += other.quantity
-        return self
+        return self.price + other.price
 
     def __call__(self, *args, **kwargs):
         """Метод, который делает созданный объект вызываемым (callable)"""
