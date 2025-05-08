@@ -11,16 +11,15 @@ def read_json(file):
     #Распаковка и запись Продуктов
     dict_products = data[0] # перезаписали словари из списка
     # Из словаря достаём списки Продуктов
-    list_Smartphone_products = dict_products.get('Smartphone')
-    list_LawnGrass_products = dict_products.get('LawnGrass')
+    list_Products = dict_products.get('Products')
 
     #Распаковка и запись Категорий
     dict_categories = data[1] # перезаписали словари из списка
     # Из словаря достаём списки Категорий
-    list_Smartphone_categories = dict_categories.get('Smartphone')
-    list_LawnGrass_categories = dict_categories.get('LawnGrass')
+    list_categories_1 = dict_categories.get('Category1')
+    list_categories_2 = dict_categories.get('Category2')
 
-    return list_Smartphone_products, list_LawnGrass_products, list_Smartphone_categories, list_LawnGrass_categories
+    return list_Products, list_categories_1
 
 def write_json(category_list, category_cls_obj):
     """На вход список и экземпляр класса Категория, на выходе лист с категориями"""
