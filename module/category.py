@@ -36,9 +36,9 @@ class Category:
         self.description += other.description
         self.product_count += other.product_count
 
-    def __call__(self, *args, **kwargs):
-        """Метод, который делает созданный объект вызываемым (callable) """
-        print(f'Был вызван объект {self}')
+    # def __call__(self, *args, **kwargs):
+    #     """Метод, который делает созданный объект вызываемым (callable) """
+    #     print(f'Был вызван объект {self}')
 
     @property
     def products(self):

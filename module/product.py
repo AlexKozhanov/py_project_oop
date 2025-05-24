@@ -24,9 +24,9 @@ class Product:
         """Метод, который вызывается при сложении двух объектов """
         return self.price + other.price
 
-    def __call__(self, *args, **kwargs):
-        """Метод, который делает созданный объект вызываемым (callable)"""
-        print(f'Был вызван объект {self}')
+    # def __call__(self, *args, **kwargs):
+    #     """Метод, который делает созданный объект вызываемым (callable)"""
+    #     print(f'Был вызван объект {self}')
 
     @property
     def price(self):
