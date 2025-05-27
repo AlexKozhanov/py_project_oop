@@ -67,7 +67,7 @@ if __name__ == "__main__":
     main(category1, category2, product1, product2, product3, product4)
 
     # Кодировка данных в json
-    category_smartphones.products[3] = Product.decoder(category_smartphones.products[3])  # для кодировки в json
+    # category_smartphones.products[3] = Product.decoder(category_smartphones.products[3])  # для кодировки в json
     category_list = []
     category_object = category1
     category_list = write_json(category_list, category_object)
