@@ -2,7 +2,7 @@
   {
     "_comment1": "Products",
     "_comment2": "Ключ - название Продуктов: Значение - список Продуктов",
-    "Product": [
+    "Products": [
       {
         "name": "Samsung Galaxy S23 Ultra",
         "description": "256GB, Серый цвет, 200MP камера",

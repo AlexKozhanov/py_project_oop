@@ -43,11 +43,11 @@ def main(category1, category2, product1, product2, product3, product4):
 
 if __name__ == "__main__":
     # Чтение данных из json
-    list_Products, list_categories_1 = read_json(file_input) # тут словари в списках
+    list_Products, list_categories_1, list_categories_2 = read_json(file_input) # тут словари в списках
 
     # Распаковка данных из json
     category_1 = list_categories_1[0] # тут уже словари
-    category_2 = list_categories_1[1]
+    category_2 = list_categories_2[0]
     product_1 = list_Products[0]
     product_2 = list_Products[1]
     product_3 = list_Products[2]
@@ -58,18 +58,19 @@ if __name__ == "__main__":
     # Обработка данных в экземпляры класса
     category1 = Category.new_category(category_1, list_products_1)
     category2 = Category.new_category(category_2, list_products_2)
-    product1 = Smartphone.new_product(product_1)
-    product2 = Smartphone.new_product(product_2)
-    product3 = Smartphone.new_product(product_3)
-    product4 = Smartphone.new_product(product_4)
+    product1 = Product.new_product(product_1)
+    product2 = Product.new_product(product_2)
+    product3 = Product.new_product(product_3)
+    product4 = Product.new_product(product_4)
 
     # Основная программа
     main(category1, category2, product1, product2, product3, product4)
 
     # Кодировка данных в json
-    # category_smartphones.products[3] = Product.decoder(category_smartphones.products[3])  # для кодировки в json
+    category_smartphones.products[3] = Product.decoder(category_smartphones.products[3])  # для кодировки в json
     category_list = []
     category_object = category1
-    category_object.append(category2)
+    category_list = write_json(category_list, category_object)
+    category_object = category2
     category_list = write_json(category_list, category_object)
     pull_json(file_output, category_list)

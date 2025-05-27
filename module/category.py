@@ -25,9 +25,7 @@ class Category:
 
     def __str__(self):
         """Метод для строкового отображения объекта"""
-        return f"-----/№{self.category_count}, Категория - {self.name}/-----\n" \
-               f"Кол-во {self.name} =  {self.product_count}\n" \
-               f"Описание: {self.description}"
+        return f"{self.name}, количество продуктов: {self.product_count} шт."
 
     def __len__(self):
         """ Метод, который вызывается при применении функции len"""
@@ -39,9 +37,9 @@ class Category:
         self.description += other.description
         self.product_count += other.product_count
 
-    def __call__(self, *args, **kwargs):
-        """Метод, который делает созданный объект вызываемым (callable) """
-        print(f'Был вызван объект {self}')
+    # def __call__(self, *args, **kwargs):
+    #     """Метод, который делает созданный объект вызываемым (callable) """
+    #     print(f'Был вызван объект {self}')
 
     @property
     def products(self):
