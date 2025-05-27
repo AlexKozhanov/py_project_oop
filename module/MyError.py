@@ -1,14 +1,21 @@
 class MyError(Exception):
-    def __init__(self, message):
-        self.message = message # Текст ошибки
+    # Атрибуты класса
+    message1 = ""
+    message2 = ""
+    message3 = ""
+    def __init__(self, subrc):
+        self.subrc = subrc # Код ошибки
+        MyError.message1 = "Товар с нулевым количеством не может быть добавлен"
 
     def __repr__(self):
         """Отображения информации об объекте в режиме отладки"""
-        return f"{self.__class__.__name__}('{self.message}')"
+        return f"{self.__class__.__name__}('{self.subrc}')"
 
     def __str__(self):
         """Метод для строкового отображения объекта"""
-        return f"Ошибка - {self.message}"
+        match self.subrc:
+            case 1:
+                return self.message1
 
     # try:
     #     raise MyError('Моя ошибка')

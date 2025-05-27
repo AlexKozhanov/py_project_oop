@@ -1,4 +1,6 @@
 from conftest import test_smartphone #импорт переменной для тестирования
+from product import Product
+
 def test_init_product(product_test):
     assert product_test.__repr__() == "Product('Nokia', 'ultra', 1000, 1)"
     assert product_test.__str__() == "Nokia, 1000 руб. Остаток 1 шт."
@@ -18,6 +20,7 @@ def test_init_category(category_test):
     assert category_test.products == [test_smartphone]
     assert category_test.product_count == 1
     assert category_test.category_count == 1
+    assert category_test.middle_price() == 1000.0
 
 def test_init_Smartphone(smartphone_test):
     assert smartphone_test.__repr__() == "Smartphone('Nokia', '3310', 1000, 1)"

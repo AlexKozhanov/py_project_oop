@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from MyError import MyError
 
 class BaseProduct:
     @abstractmethod
@@ -27,7 +28,10 @@ class Product(BaseProduct, MixinProduct):
         self.name = name
         self.description = description
         self.__price = price
-        self.quantity = quantity
+        if quantity <= 0:
+            raise MyError(1)
+        else:
+            self.quantity = quantity
 
     def __repr__(self):
         """Отображения информации об объекте в режиме отладки"""

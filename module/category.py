@@ -82,3 +82,14 @@ class Category:
         products = product_list
         product_count = len(product_list)
         return cls(name, description, products)
+
+    def middle_price(self):
+        prise = 0.0
+        for i in self.products:
+            prise += i.price
+        try:
+            prise = prise / self.product_count
+        except ZeroDivisionError as er:
+            return 0.0
+        else:
+            return prise

@@ -20,12 +20,6 @@
         "description": "1024GB, Синий",
         "price": 31000.0,
         "quantity": 14
-      },
-      {
-        "name": "55 QLED 4K",
-        "description": "Фоновая подсветка",
-        "price": 123000.0,
-        "quantity": 7
       }
     ]
   },
@@ -35,14 +29,14 @@
     "Category1": [
       {
         "name": "Смартфоны",
-        "description": "Смартфоны, как средство ...",
+        "description": "Категория смартфонов",
         "products": []
       }
     ],
     "Category2": [
       {
-        "name": "Телевизоры",
-        "description": "Современный телевизор ...",
+        "name": "Пустая категория",
+        "description": "Категория без продуктов",
         "products": []
       }
     ]
