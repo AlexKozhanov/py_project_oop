@@ -1,6 +1,6 @@
 import pytest
-from module.product import Product, Smartphone, LawnGrass
-from module.category import Category
+from product import Product, Smartphone, LawnGrass
+from category import Category
 
 test_product1 = Product("Nokia", "ultra", 1000.0, 1)
 test_product2 = Product("Nokla", "Pultra", 2000.0, 1)

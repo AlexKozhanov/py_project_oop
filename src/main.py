@@ -1,5 +1,5 @@
 #INCLUDE:
-from MyError import MyError
+from myerror import MyError
 from function import read_json, pull_json, write_json
 from category import Category
 from product import Product, Smartphone, LawnGrass

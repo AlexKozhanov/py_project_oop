@@ -1,5 +1,5 @@
 from product import Product, Smartphone, LawnGrass
-from MyError import MyError
+from myerror import MyError
 
 class Category:
     """Класс Категория"""
@@ -25,9 +25,7 @@ class Category:
 
     def __str__(self):
         """Метод для строкового отображения объекта"""
-        return f"-----/№{self.category_count}, Категория - {self.name}/-----\n" \
-               f"Кол-во {self.name} =  {self.product_count}\n" \
-               f"Описание: {self.description}"
+        return f"{self.name}, количество продуктов: {self.product_count} шт."
 
     def __len__(self):
         """ Метод, который вызывается при применении функции len"""
