@@ -1,10 +1,8 @@
 from MyError import MyError
 from function import read_json, pull_json, write_json, converting_class
-import json
 
 file_input = '../config/products.json'
 file_output = '../config/output.json'
-
 
 def main():
     # Чтение данных из json
