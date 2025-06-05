@@ -1,4 +1,5 @@
-from conftest import test_smartphone #импорт переменной для тестирования
+from tests.conftest import test_smartphone #импорт переменной для тестирования
+
 def test_init_product(product_test):
     assert product_test.__repr__() == "Product('Nokia', 'ultra', 1000, 1)"
     assert product_test.__str__() == "Nokia, 1000 руб. Остаток 1 шт."
@@ -32,12 +33,12 @@ def test_init_Smartphone(smartphone_test):
     assert smartphone_test.color == 'синий'
 
 def test_init_lawn_grass(lawngrass_test):
-    assert lawngrass_test.__repr__() == "LawnGrass('травка', 'супер травка', 100, 10)"
-    assert lawngrass_test.__str__() == "травка, 100 руб. Остаток 10 шт."
-    assert lawngrass_test.name == 'травка'
-    assert lawngrass_test.description == 'супер травка'
+    assert lawngrass_test.__repr__() == "LawnGrass('Grass', 'Super Grass', 100, 10)"
+    assert lawngrass_test.__str__() == "Grass, 100 руб. Остаток 10 шт."
+    assert lawngrass_test.name == 'Grass'
+    assert lawngrass_test.description == 'Super Grass'
     assert lawngrass_test.price == 100
     assert lawngrass_test.quantity == 10
-    assert lawngrass_test.country == 'Куба'
-    assert lawngrass_test.germination_period == '5 дней'
-    assert lawngrass_test.color == 'зеленая'
+    assert lawngrass_test.country == 'Cuba'
+    assert lawngrass_test.germination_period == '5 day'
+    assert lawngrass_test.color == 'green'

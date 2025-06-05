@@ -1,8 +1,8 @@
 #INCLUDE:
-from MyError import MyError
-from function import read_json, pull_json, write_json
-from category import Category
-from product import Product, Smartphone, LawnGrass
+from src.myerror import MyError
+from src.function import read_json, pull_json, write_json
+from src.category import Category
+from src.product import Product, Smartphone, LawnGrass
 import json
 
 #DATA:

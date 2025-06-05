@@ -1,11 +1,12 @@
 import pytest
-from product import Product, Smartphone, LawnGrass
-from category import Category
+
+from src.product import Product, Smartphone, LawnGrass
+from src.category import Category
 
 test_product = Product("Nokia", "ultra", 1000, 1)
 test_product_add = Product("Nokia", "ultra", 2000, 1)
 test_smartphone = Smartphone("Nokia", "3310", 1000, 1, 100.0, "3300", 128, "синий")
-test_lawngrass = LawnGrass("травка", "супер травка", 100, 10, "Куба", "5 дней", "зеленая")
+test_lawngrass = LawnGrass("Grass", "Super Grass", 100, 10, "Cuba", "5 day", "green")
 test_category = Category("test", "test for hell", [test_smartphone])
 
 @pytest.fixture
