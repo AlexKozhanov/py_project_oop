@@ -1,5 +1,5 @@
-from product import Product, Smartphone, LawnGrass
-from myerror import MyError
+from src.product import Product, Smartphone, LawnGrass
+from src.myerror import MyError
 
 class Category:
     """Класс Категория"""

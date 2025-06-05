@@ -1,10 +1,5 @@
-from conftest import test_smasrtphone #импорт переменной для тестирования
+from tests.conftest import test_smasrtphone #импорт переменной для тестирования
 
-# test_product1 = Product("Nokia", "ultra", 1000.0, 1)
-# test_product2 = Product("Nokla", "Pultra", 2000.0, 1)
-# test_smasrtphone = Smartphone("Nokia", "3310", 1000.0, 1, 100.0, "3300", 128, "синий")
-# test_lawnGrass = LawnGrass("травка", "супер травка", 100, 10, "Куба", "5 дней", "зеленая")
-# test_category = Category("Phone", "Phone it's good",[test_smasrtphone])
 def test_init_product(product_test):
     assert product_test.__repr__() == "Product('Nokia', 'ultra', 1000.0, 1)"
     assert product_test.__str__() == "Nokia, 1000.0 руб. Остаток 1 шт."
